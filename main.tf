@@ -557,11 +557,6 @@ resource "aws_ecs_service" "codedeploy" {
     type = var.deployment_controller_type
   }
 
-  deployment_circuit_breaker {
-    enable   = var.circuit_breaker_deployment_enabled
-    rollback = var.circuit_breaker_rollback_enabled
-  }
-
   # https://www.terraform.io/docs/providers/aws/r/ecs_service.html#network_configuration
   dynamic "network_configuration" {
     for_each = var.network_mode == "awsvpc" ? ["true"] : []
